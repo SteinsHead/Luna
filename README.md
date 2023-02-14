@@ -1,5 +1,9 @@
 # Luna - a monorepo practice
 
+<div align=center>
+<img src="https://cdn.jsdelivr.net/gh/SteinsHead/ImageBed/img/2022/i0e137da6afc523bae678ef4b0357cfabmg.png" />
+</div>
+
 ### 功能简介
 
 + 尝试将项目合并为一个整体 monorepo 项目
