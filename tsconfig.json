@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "ES2020",
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "paths": {
+      // Why? See https://github.com/DimensionDev/Maskbook/blob/2a042633c5bde18dd97a21d34e4943c8c4efa514/tsconfig.json#L33-L67
+      "@luna/core": ["./packages/core/src"],
+      "@luna/native": ["./packages/native/src"],
+      "@luna/ui": ["./packages/ui/src"],
+      "@luna/util": ["./packages/util/src"],
+      "@luna/web": ["./packages/web/src"]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/native"
+    },
+    {
+      "path": "./packages/ui"
+    },
+    {
+      "path": "./packages/util"
+    },
+    {
+      "path": "./packages/web"
+    }
+  ]
+}
