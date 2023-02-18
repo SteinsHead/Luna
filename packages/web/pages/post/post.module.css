@@ -1,0 +1,83 @@
+.contentArea {
+  border: 1px solid #ffb769;
+  border-radius: 1rem;
+  padding: 1rem;
+  word-wrap: break-word;
+  font-size: 18px;
+}
+
+.contentArea:empty:before {
+  content: attr(placeholder);
+}
+
+.contentArea:focus {
+  outline: 0;
+  box-shadow: 0 0 3px 3px #ffb769;
+  transition: 0.5s;
+}
+
+.titleArea {
+  border: 1px solid #ffb769;
+  border-radius: 1rem;
+  padding: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 18px;
+}
+
+.titleArea:empty:before {
+  content: attr(placeholder);
+}
+
+.titleArea:focus {
+  outline: 0;
+  box-shadow: 0 0 3px 3px #ffb769;
+  transition: 0.5s;
+}
+
+.textArea {
+  border: 1px solid #ffb769;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 18px;
+  min-height: 40rem;
+  margin-top: 3rem;
+  width: 80%;
+}
+
+.textArea:focus {
+  outline: 0;
+  box-shadow: 0 0 3px 3px #ffb769;
+  transition: 0.5s;
+}
+
+.button {
+  width: 10rem;
+  height: 4rem;
+  background-color: #ffb769;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background-color: #75ad9b;
+  transition: 0.5s;
+}
+
+.textArea :global(.RichEditor-blockquote) {
+  display: block;
+  border-left: 1rem solid #ffb769;
+  color: #666;
+  margin: 0 0;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  background-color: #eff9ff;
+}

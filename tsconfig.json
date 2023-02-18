@@ -20,6 +20,10 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "incremental": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "paths": {
       // Why? See https://github.com/DimensionDev/Maskbook/blob/2a042633c5bde18dd97a21d34e4943c8c4efa514/tsconfig.json#L33-L67
       "@luna/core": ["./packages/core/src"],
