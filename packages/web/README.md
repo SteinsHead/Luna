@@ -1,5 +1,7 @@
 # @Luna/Core - Luna 项目 web 部分实现
 
+![](https://cdn.jsdelivr.net/gh/SteinsHead/ImageBed/img/2022/lunatheme.png)
+
 ### 功能简介
 
 - Luna 项目的 web 端
