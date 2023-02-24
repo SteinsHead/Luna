@@ -68,6 +68,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
+    requireConfigFile: false,
   },
   plugins: ['react'],
   rules: {},
