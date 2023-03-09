@@ -48,10 +48,10 @@ export default function Home() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const message_book = await axios.get('http://localhost:3001/books');
+      const message_book = await axios.get('http://127.0.0.1:3001/books');
       setBookArr(message_book.data);
       const message_pic = await axios.get(
-        `http://localhost:3001/think?number=${message_book.data.length}`
+        `http://127.0.0.1:3001/think?number=${message_book.data.length}`
       );
       setPicArr(message_pic.data);
     };
@@ -60,10 +60,10 @@ export default function Home() {
 
   useEffect(() => {
     const fetchThink = async () => {
-      const message_anime = await axios.get('http://localhost:3001/anime');
+      const message_anime = await axios.get('http://127.0.0.1:3001/anime');
       setAnimeArr(message_anime.data);
       const message_pic = await axios.get(
-        `http://localhost:3001/think?number=${message_anime.data.length}`
+        `http://127.0.0.1:3001/think?number=${message_anime.data.length}`
       );
       setAnimePicArr(message_pic.data);
     };
@@ -72,7 +72,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchDo = async () => {
-      const message = await axios.get('http://localhost:3001/think');
+      const message = await axios.get('http://127.0.0.1:3001/think');
       setDoArr(message.data);
     };
     fetchDo();

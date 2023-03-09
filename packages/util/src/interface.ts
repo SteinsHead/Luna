@@ -1,6 +1,6 @@
 import Axios from './web';
 
-export function getItemList(datas) {
+export function getItemList(datas: any) {
   return Axios({
     url: '/api/getItemList',
     method: 'post',
@@ -10,7 +10,7 @@ export function getItemList(datas) {
     data: datas,
   });
 }
-export function getItem(datas) {
+export function getItem(datas: any) {
   return Axios({
     url: '/api/getItem',
     method: 'post',
@@ -20,7 +20,7 @@ export function getItem(datas) {
     data: datas,
   });
 }
-export function getItemInfo(datas) {
+export function getItemInfo(datas: any) {
   return Axios({
     url: '/api/getItemInfo' + datas,
     method: 'get',
