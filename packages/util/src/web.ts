@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const DEFAULT_BASE_URL = '/baseurl';
+const DEFAULT_BASE_URL = 'http://localhost:3001/';
 // 默认访问 base_url
 
 const DEFAULT_TIMEOUT = 6000;

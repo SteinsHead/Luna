@@ -1,28 +1,27 @@
 import Axios from './web';
 
-export function getItemList(datas: any) {
+export function getBooks(datas?: any) {
   return Axios({
-    url: '/api/getItemList',
-    method: 'post',
+    url: '/api/v1/books',
+    method: 'get',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded', //设置请求头请求格式form
+      'Content-Type': 'application/json', //设置请求头请求格式form
     },
-    data: datas,
+    data: datas ? null : datas,
+  }).then(res => {
+    console.log(res.data);
   });
 }
-export function getItem(datas: any) {
+
+export function getAbout(datas?: any) {
   return Axios({
-    url: '/api/getItem',
-    method: 'post',
+    url: '/api/v1/about',
+    method: 'get',
     headers: {
       'Content-Type': 'application/json', //设置请求头请求格式为json
     },
-    data: datas,
-  });
-}
-export function getItemInfo(datas: any) {
-  return Axios({
-    url: '/api/getItemInfo' + datas,
-    method: 'get',
+    data: datas ? null : datas,
+  }).then(res => {
+    console.log(res.data);
   });
 }
