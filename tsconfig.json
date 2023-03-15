@@ -30,7 +30,8 @@
       "@luna/native": ["./packages/native/src"],
       "@luna/ui": ["./packages/ui/src"],
       "@luna/util": ["./packages/util/src"],
-      "@luna/web": ["./packages/web/src"]
+      "@luna/web": ["./packages/web/src"],
+      "@luna/luna-app": ["./packages/luna-app/src"]
     }
   },
   "files": [],
@@ -49,6 +50,9 @@
     },
     {
       "path": "./packages/web"
+    },
+    {
+      "path": "./packages/luna-app"
     }
   ]
 }
