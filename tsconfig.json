@@ -31,7 +31,9 @@
       "@luna/ui": ["./packages/ui/src"],
       "@luna/util": ["./packages/util/src"],
       "@luna/web": ["./packages/web/src"],
-      "@luna/luna-app": ["./packages/luna-app/src"]
+      "@luna/luna-app": ["./packages/luna-app/src"],
+      "@luna/luna-pc": ["./packages/luna-pc/src"],
+      "@luna/luna-web": ["./packages/luna-web/src"]
     }
   },
   "files": [],
@@ -53,6 +55,12 @@
     },
     {
       "path": "./packages/luna-app"
+    },
+    {
+      "path": "./packages/luna-pc"
+    },
+    {
+      "path": "./packages/luna-web"
     }
   ]
 }
