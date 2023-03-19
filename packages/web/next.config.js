@@ -7,6 +7,10 @@ module.exports = async (phase, { defaultConfig }) => {
     /* config options here */
     images: {
       domains: ['http://localhost:3001', 'cdn.jsdelivr.net'],
+      unoptimized: true,
+    },
+    exportPathMap: {
+      '/': { page: '/' },
     },
   };
   return nextConfig;
