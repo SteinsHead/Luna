@@ -1,0 +1,18 @@
+.footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #999;
+}
+
+.footer p {
+  margin: 0;
+  line-height: 2.2;
+}
+
+.sectionLine {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 0.5px;
+  border-width: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}

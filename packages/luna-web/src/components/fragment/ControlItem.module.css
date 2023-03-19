@@ -1,0 +1,27 @@
+.change {
+  background-color: #ffb769;
+  animation: color-change 500ms;
+}
+
+.inactive {
+  background-color: #75ad9b;
+  animation: color-reverse 500ms;
+}
+
+@keyframes color-change {
+  0% {
+    background-color: #75ad9b;
+  }
+  100% {
+    background-color: #ffb769;
+  }
+}
+
+@keyframes color-reverse {
+  0% {
+    background-color: #ffb769;
+  }
+  100% {
+    background-color: #75ad9b;
+  }
+}

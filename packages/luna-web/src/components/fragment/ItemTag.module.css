@@ -1,0 +1,11 @@
+.element {
+  background-color: rgba(99, 155, 9, 0.45);
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+  border-radius: 1em;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6em 2em 0.6em 4em;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+}

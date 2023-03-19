@@ -1,0 +1,22 @@
+.cover {
+  transition: all 500ms;
+}
+
+.cover:hover {
+  transform: scale(1.2);
+}
+
+.shader {
+  position: absolute;
+  padding: 10px 25px;
+  width: 100%;
+  background: linear-gradient(rgba(38, 69, 61, 0.333), #26453da8);
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
+  backdrop-filter: saturate(180%) blur(15px);
+  height: 40px;
+  top: 140px;
+}
+
+.mask {
+  margin: 0 auto;
+}
