@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import KeepAlive from 'react-activation';
 import './App.css';
+// import Side from '@components/Side'
+// import Header from './components/Header'
+// import Cloud from '@components/Cloud'
+// import Action from '@components/Action'
+// import Home from '@/pages/Home'
+// import Project from '@/pages/Project'
+// import Book from '@/pages/Book'
+// import Inspiration from '@/pages/Inspiration'
+// import Friend from '@/pages/Friend'
+// import About from '@/pages/About'
+// import Post from '@/pages/Post'
+// import { getLocation } from '@/utils'
+// import { visitorStatistics } from '@utils/service'
 
-function App() {
+const ZeroRoutes = () => {
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Routes location={location}>
+      <Route
+        path={'/'}
+        element={<KeepAlive cacheKey="Home">{/* <Home /> */}</KeepAlive>}
+      />
+      {/* <Route path={'/project'} element={<Project />} />
+          <Route path={'/book'} element={<Book />} />
+          <Route path={'/inspiration'} element={<Inspiration />} />
+          <Route path={'/friend'} element={<Friend />} />
+          <Route path={'/about'} element={<About />} />
+          <Route path={'/post/:num'} element={<Post />} /> */}
+    </Routes>
+  );
+};
+
+const App = () => {
+  useEffect(() => {
+    // const referrer = getLocation(document.referrer)
+    // const hostname = referrer.hostname || '直接访问'
+    // visitorStatistics(hostname)
+  }, []);
+
+  return (
+    <div className="app">
+      {/* <Cloud />
+      <Action />
+      <Side />
+      <Header /> */}
+      <ZeroRoutes />
     </div>
   );
-}
-
+};
 export default App;
