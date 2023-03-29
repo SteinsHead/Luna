@@ -6,7 +6,7 @@ import './App.css';
 // import Header from './components/Header'
 // import Cloud from '@components/Cloud'
 // import Action from '@components/Action'
-// import Home from '@/pages/Home'
+import Home from './pages/Home';
 // import Project from '@/pages/Project'
 // import Book from '@/pages/Book'
 // import Inspiration from '@/pages/Inspiration'
@@ -22,7 +22,7 @@ const ZeroRoutes = () => {
     <Routes location={location}>
       <Route
         path={'/'}
-        element={<KeepAlive cacheKey="Home">{/* <Home /> */}</KeepAlive>}
+        element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
       />
       {/* <Route path={'/project'} element={<Project />} />
           <Route path={'/book'} element={<Book />} />

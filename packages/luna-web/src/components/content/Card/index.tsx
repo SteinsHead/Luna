@@ -1,4 +1,4 @@
-import styles from './Card.module.css';
+import styles from './index.module.css';
 
 function Card({ picture, cardTitle, cardType }: cardTypes) {
   const handleClick = () => {};

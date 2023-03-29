@@ -1,4 +1,4 @@
-import styles from './ItemTag.module.css';
+import styles from './index.module.css';
 
 export default function ItemTag({ TagName }: TagType) {
   return (

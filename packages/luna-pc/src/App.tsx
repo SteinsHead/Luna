@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import { invoke } from '@tauri-apps/api/tauri';
+import ErrorPage from './error-page';
 import './App.css';
 
 function App() {
+  // const router = createBrowserRouter([
+  //   {
+  //     path: '/',
+  //     element: <Root />,
+  //     errorElement: <ErrorPage />,
+  //   },
+  // ]);
+
   const [greetMsg, setGreetMsg] = useState('');
   const [name, setName] = useState('');
 
