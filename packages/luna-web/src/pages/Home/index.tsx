@@ -66,14 +66,16 @@ export default function Home() {
   //     fetchDo();
   // }, []);
 
-  // useEffect(() => {
-  //     const fetchSaying = async () => {
-  //         const message = await axios.get('https://v1.hitokoto.cn/?c=a');
-  //         const says = `${message.data.hitokoto} ${message.data.from_who === null ? '' : "    —— " + message.data.from_who} 《${message.data.from}》`
-  //         setSaying(says);
-  //     }
-  //     fetchSaying();
-  // }, [])
+  useEffect(() => {
+    const fetchSaying = async () => {
+      const message = await axios.get('https://v1.hitokoto.cn/?c=a');
+      const says = `${message.data.hitokoto} ${
+        message.data.from_who === null ? '' : '    —— ' + message.data.from_who
+      } 《${message.data.from}》`;
+      setSaying(says);
+    };
+    fetchSaying();
+  }, []);
 
   return (
     <>

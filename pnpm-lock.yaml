@@ -105,6 +105,7 @@ importers:
   packages/luna-web:
     specifiers:
       '@ant-design/icons': ^4.7.0
+      '@icon-park/react': ^1.4.2
       '@testing-library/jest-dom': ^5.16.5
       '@testing-library/react': ^13.4.0
       '@testing-library/user-event': ^13.5.0
@@ -125,6 +126,7 @@ importers:
       web-vitals: ^2.1.4
     dependencies:
       '@ant-design/icons': 4.8.0_biqbaboplfbrettd7655fr4n2y
+      '@icon-park/react': 1.4.2_biqbaboplfbrettd7655fr4n2y
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@testing-library/user-event': 13.5.0

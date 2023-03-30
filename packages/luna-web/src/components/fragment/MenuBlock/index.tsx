@@ -13,14 +13,16 @@ function MenuBlock({ blockName, blockLink }: MenuProps) {
           alignItems: 'center',
           boxShadow: '0 2px 12px 0 rgb(0 0 0 / 10%)',
         }}
-      ></div>
+      >
+        <p style={{ margin: 0 }}>{blockName}</p>
+      </div>
     </>
   );
 }
 
 interface MenuProps {
-  blockName: string;
-  blockLink: string;
+  blockName?: string;
+  blockLink?: string;
 }
 
 export default MenuBlock;
