@@ -100,14 +100,32 @@ export default function Home() {
               boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 12px 0px',
             }}
           >
-            <ItemTag TagName={'日记随笔'}></ItemTag>
+            <div
+              className="outline"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <ItemTag TagName={'日记随笔'}></ItemTag>
+              <ItemTag TagSource={'Right'}></ItemTag>
+            </div>
             <div className={styles.container}>
               {/* {picArr &&
                                 Object.keys(picArr).map((key) => <Card key={key} picture={picArr[key]} cardTitle={bookArr[key].substring(0, bookArr[key].length - 3)} cardType={"diary"}></Card>)
                             } */}
               <Card cardType={'diary'}></Card>
             </div>
-            <ItemTag TagName={'动漫杂谈'}></ItemTag>
+            <div
+              className="outline"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <ItemTag TagName={'动漫杂谈'}></ItemTag>
+              <ItemTag TagSource={'Right'}></ItemTag>
+            </div>
             <div className={styles.container}>
               {/* {animePicArr &&
                                 Object.keys(animePicArr).map((key) => <Card key={key} picture={animePicArr[key]} cardTitle={thinkArr[key].substring(0, thinkArr[key].length - 3)} cardType={"anime"}></Card>)
