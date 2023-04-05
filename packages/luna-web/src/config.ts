@@ -10,12 +10,12 @@ const config = {
     serverURL: 'https://api.chanshiyu.com',
   },
   contact: {
-    github: 'https://github.com/chanshiyucx',
-    twitter: 'https://twitter.com/chanshiyucx',
+    github: 'https://github.com/SteinsHead',
+    twitter: 'https://twitter.com/ever17_steins',
     telegram: 'https://t.me/chanshiyucx',
     email: 'mailto://me@chanshiyu.com',
     music: 'https://music.163.com/#/user/home?id=103060582',
-    blog: 'https://chanshiyu.gitbook.io/blog',
+    blog: 'https://steinsheads-organization.gitbook.io/steinshead/',
   },
   gitalk: {
     clientID: '864b1c2cbc4e4aad9ed8',
