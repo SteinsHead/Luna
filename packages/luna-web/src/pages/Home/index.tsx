@@ -1,11 +1,16 @@
 import { Layout } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Footer from '../../components/layouts/Footer';
 import Header from '../../components/layouts/Header';
 import Card from '../../components/content/Card';
 import ItemTag from '../../components/fragment/ItemTag';
 import axios from 'axios';
 import styles from './index.module.css';
+
+import { useNavigate } from 'react-router-dom';
+import { Issue, Hot } from '../../type';
+import { queryArchive } from '../../utils/service';
+import { useLoading } from '../../utils/hook';
 
 const { Content } = Layout;
 
@@ -66,15 +71,101 @@ export default function Home() {
   //     fetchDo();
   // }, []);
 
+  const navigate = useNavigate();
+  const loading = useLoading();
+  const [page, setPage] = useState(1);
+  const [issues, setIssues] = useState<Issue[]>([]);
+  const [hot, setHot] = useState<Hot>({});
+  const maskRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const hoverRef = useRef<any>(null);
+  const timerRef = useRef<number>();
+  const loadingRef = useRef<boolean>(false);
+  const finishedRef = useRef<boolean>(false);
+  const unactiveRef = useRef<boolean>(false);
+  const [maskHeight, setMaskHeight] = useState(0);
+  const [maskTop, setMaskTop] = useState(0);
+
+  const handleQuery = () => {
+    loadingRef.current = true;
+    queryArchive(page)
+      .then(async data => {
+        if (page === 1) {
+          await loading();
+        }
+
+        if (data.length) {
+          console.log('sasasasas');
+          console.log(data);
+          // data = data.map(formatIssue)
+          // setIssues([...issues, ...data])
+
+          const ids = data.map(s => s.id);
+          // queryHot(ids).then((h) => {
+          //   setHot({ ...hot, ...h })
+          // })
+        } else {
+          finishedRef.current = true;
+        }
+
+        if (maskHeight === 0) {
+          setTimeout(() => {
+            const target = listRef.current?.firstChild;
+            if (target) {
+              calcMaskPos(target);
+            }
+          }, 100);
+        }
+      })
+      .catch(console.error)
+      .finally(() => {
+        loadingRef.current = false;
+      });
+  };
+
   useEffect(() => {
-    const fetchSaying = async () => {
-      const message = await axios.get('https://v1.hitokoto.cn/?c=a');
-      const says = `${message.data.hitokoto} ${
-        message.data.from_who === null ? '' : '    —— ' + message.data.from_who
-      } 《${message.data.from}》`;
-      setSaying(says);
+    handleQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
+
+  const calcMaskPos = (target: any) => {
+    if (!hoverRef.current) {
+      hoverRef.current = target;
+    }
+    const { clientHeight, offsetTop } = target;
+    const paddingTop =
+      document.documentElement.clientWidth > 1024 ? 3 * 16 : 2 * 16;
+    const realTop = offsetTop + paddingTop;
+    if (maskHeight === clientHeight && maskTop === realTop) return;
+    setMaskHeight(clientHeight);
+    setMaskTop(realTop);
+  };
+
+  const handleScrollAndResize = () => {
+    if (unactiveRef.current) return;
+    clearTimeout(timerRef.current);
+    timerRef.current = window.setTimeout(() => {
+      if (hoverRef.current) {
+        calcMaskPos(hoverRef.current);
+      }
+    }, 100);
+    // load more
+    if (loadingRef.current || finishedRef.current) return;
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight > scrollHeight - 100) {
+      loadingRef.current = true; // fix frequent loading
+      setPage(page => page + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollAndResize, false);
+    window.addEventListener('resize', handleScrollAndResize, false);
+    return () => {
+      window.removeEventListener('scroll', handleScrollAndResize, false);
+      window.removeEventListener('resize', handleScrollAndResize, false);
     };
-    fetchSaying();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
