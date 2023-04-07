@@ -7,6 +7,7 @@ import ItemTag from '../../components/fragment/ItemTag';
 import axios from 'axios';
 import styles from './index.module.css';
 
+import { formatIssue } from '../../utils/format';
 import { useNavigate } from 'react-router-dom';
 import { Issue, Hot } from '../../type';
 import { queryArchive } from '../../utils/service';
@@ -95,15 +96,10 @@ export default function Home() {
         }
 
         if (data.length) {
-          console.log('sasasasas');
+          data = data.map(formatIssue);
           console.log(data);
-          // data = data.map(formatIssue)
-          // setIssues([...issues, ...data])
-
-          const ids = data.map(s => s.id);
-          // queryHot(ids).then((h) => {
-          //   setHot({ ...hot, ...h })
-          // })
+          setIssues([...issues, ...data]);
+          console.log(issues);
         } else {
           finishedRef.current = true;
         }
@@ -202,10 +198,16 @@ export default function Home() {
               <ItemTag TagSource={'Right'}></ItemTag>
             </div>
             <div className={styles.container}>
-              {/* {picArr &&
-                                Object.keys(picArr).map((key) => <Card key={key} picture={picArr[key]} cardTitle={bookArr[key].substring(0, bookArr[key].length - 3)} cardType={"diary"}></Card>)
-                            } */}
-              <Card cardType={'diary'}></Card>
+              {issues.length !== 0 &&
+                issues.map(issue => {
+                  return (
+                    <Card
+                      key={issue.id}
+                      cardTitle={issue.title}
+                      cardType={'diary'}
+                    ></Card>
+                  );
+                })}
             </div>
             <div
               className="outline"

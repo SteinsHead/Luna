@@ -1,5 +1,7 @@
 import styles from './index.module.css';
 
+import ayaka from '../../../assets/images/ayaka.jpg';
+
 function Card({ picture, cardTitle, cardType }: cardTypes) {
   const handleClick = () => {};
 
@@ -19,12 +21,22 @@ function Card({ picture, cardTitle, cardType }: cardTypes) {
       }}
       onClick={handleClick}
     >
-      {picture && (
+      {picture ? (
         <div className="picture" style={{ height: '100%', width: '100%' }}>
           <img
             className={styles.cover}
             src={`http://localhost:3001/${picture}`}
             style={{ objectFit: 'cover', height: '100%' }}
+            alt="this"
+          ></img>
+        </div>
+      ) : (
+        <div className="picture" style={{ height: '100%', width: '100%' }}>
+          <img
+            className={styles.cover}
+            src={ayaka}
+            style={{ objectFit: 'cover', height: '100%' }}
+            alt="this"
           ></img>
         </div>
       )}
