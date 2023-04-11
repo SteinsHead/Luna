@@ -44,9 +44,10 @@ export const queryIssue = async (number: string): Promise<Issue> => {
 };
 
 export const queryIssueByLabel = async (
-  label: IssueLabel
+  // label: IssueLabel
+  label: string
 ): Promise<Issue[]> => {
-  const api = `${blog}/issues?state=closed&labels=${label}`;
+  const api = `${blog}/issues?state=open&labels=${label}`;
   return githubQuery(api);
 };
 

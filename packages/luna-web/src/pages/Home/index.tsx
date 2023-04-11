@@ -10,8 +10,9 @@ import styles from './index.module.css';
 import { formatIssue } from '../../utils/format';
 import { useNavigate } from 'react-router-dom';
 import { Issue, Hot } from '../../type';
-import { queryArchive } from '../../utils/service';
+import { queryArchive, queryIssueByLabel } from '../../utils/service';
 import { useLoading } from '../../utils/hook';
+import { error } from 'console';
 
 const { Content } = Layout;
 
@@ -76,6 +77,8 @@ export default function Home() {
   const loading = useLoading();
   const [page, setPage] = useState(1);
   const [issues, setIssues] = useState<Issue[]>([]);
+  const [dreamloop, setDreamloop] = useState<Issue[]>([]);
+  const [magic, setMagic] = useState<Issue[]>([]);
   const [hot, setHot] = useState<Hot>({});
   const maskRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -87,30 +90,47 @@ export default function Home() {
   const [maskHeight, setMaskHeight] = useState(0);
   const [maskTop, setMaskTop] = useState(0);
 
-  const handleQuery = () => {
+  const handleQuery = (handle: string, label: string) => {
     loadingRef.current = true;
-    queryArchive(page)
-      .then(async data => {
-        if (page === 1) {
-          await loading();
-        }
+    // queryArchive(page)
+    //   .then(async data => {
+    //     if (page === 1) {
+    //       await loading();
+    //     }
 
+    //     if (data.length) {
+    //       data = data.map(formatIssue);
+    //       console.log(data);
+    //       setIssues([...issues, ...data]);
+    //       console.log(issues);
+    //     } else {
+    //       finishedRef.current = true;
+    //     }
+
+    //     if (maskHeight === 0) {
+    //       setTimeout(() => {
+    //         const target = listRef.current?.firstChild;
+    //         if (target) {
+    //           calcMaskPos(target);
+    //         }
+    //       }, 100);
+    //     }
+    //   })
+    //   .catch(console.error)
+    //   .finally(() => {
+    //     loadingRef.current = false;
+    //   });
+    queryIssueByLabel(label)
+      .then(async data => {
         if (data.length) {
           data = data.map(formatIssue);
           console.log(data);
-          setIssues([...issues, ...data]);
-          console.log(issues);
-        } else {
-          finishedRef.current = true;
-        }
-
-        if (maskHeight === 0) {
-          setTimeout(() => {
-            const target = listRef.current?.firstChild;
-            if (target) {
-              calcMaskPos(target);
-            }
-          }, 100);
+          if (handle === 'dream') {
+            setDreamloop([...dreamloop, ...data]);
+          }
+          if (handle === 'magic') {
+            setMagic([...magic, ...data]);
+          }
         }
       })
       .catch(console.error)
@@ -120,7 +140,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    handleQuery();
+    handleQuery('dream', '梦境回环');
+    handleQuery('magic', '魔法世界');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
@@ -198,8 +219,8 @@ export default function Home() {
               <ItemTag TagSource={'Right'}></ItemTag>
             </div>
             <div className={styles.container}>
-              {issues.length !== 0 &&
-                issues.map(issue => {
+              {dreamloop.length !== 0 &&
+                dreamloop.map(issue => {
                   return (
                     <Card
                       key={issue.id}
@@ -220,10 +241,16 @@ export default function Home() {
               <ItemTag TagSource={'Right'}></ItemTag>
             </div>
             <div className={styles.container}>
-              {/* {animePicArr &&
-                                Object.keys(animePicArr).map((key) => <Card key={key} picture={animePicArr[key]} cardTitle={thinkArr[key].substring(0, thinkArr[key].length - 3)} cardType={"anime"}></Card>)
-                            } */}
-              <Card cardType={'anime'}></Card>
+              {magic.length !== 0 &&
+                magic.map(issue => {
+                  return (
+                    <Card
+                      key={issue.id}
+                      cardTitle={issue.title}
+                      cardType={'diary'}
+                    ></Card>
+                  );
+                })}
             </div>
             <div
               className="container"
