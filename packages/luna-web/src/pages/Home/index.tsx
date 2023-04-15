@@ -39,11 +39,12 @@ export default function Home() {
   const [bookArr, setBookArr] = useState([]);
   const [saying, setSaying] = useState('');
 
-  // useEffect(() => {
-  //     const script = document.createElement("script");
-  //     script.src = "https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js";
-  //     document.body.appendChild(script);
-  // }, []);
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src =
+      'https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js';
+    document.body.appendChild(script);
+  }, []);
 
   // useEffect(() => {
   //     const fetchBooks = async () => {
@@ -92,34 +93,6 @@ export default function Home() {
 
   const handleQuery = (handle: string, label: string) => {
     loadingRef.current = true;
-    // queryArchive(page)
-    //   .then(async data => {
-    //     if (page === 1) {
-    //       await loading();
-    //     }
-
-    //     if (data.length) {
-    //       data = data.map(formatIssue);
-    //       console.log(data);
-    //       setIssues([...issues, ...data]);
-    //       console.log(issues);
-    //     } else {
-    //       finishedRef.current = true;
-    //     }
-
-    //     if (maskHeight === 0) {
-    //       setTimeout(() => {
-    //         const target = listRef.current?.firstChild;
-    //         if (target) {
-    //           calcMaskPos(target);
-    //         }
-    //       }, 100);
-    //     }
-    //   })
-    //   .catch(console.error)
-    //   .finally(() => {
-    //     loadingRef.current = false;
-    //   });
     queryIssueByLabel(label)
       .then(async data => {
         if (data.length) {
@@ -142,48 +115,58 @@ export default function Home() {
   useEffect(() => {
     handleQuery('dream', '梦境回环');
     handleQuery('magic', '魔法世界');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const calcMaskPos = (target: any) => {
-    if (!hoverRef.current) {
-      hoverRef.current = target;
-    }
-    const { clientHeight, offsetTop } = target;
-    const paddingTop =
-      document.documentElement.clientWidth > 1024 ? 3 * 16 : 2 * 16;
-    const realTop = offsetTop + paddingTop;
-    if (maskHeight === clientHeight && maskTop === realTop) return;
-    setMaskHeight(clientHeight);
-    setMaskTop(realTop);
-  };
-
-  const handleScrollAndResize = () => {
-    if (unactiveRef.current) return;
-    clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => {
-      if (hoverRef.current) {
-        calcMaskPos(hoverRef.current);
-      }
-    }, 100);
-    // load more
-    if (loadingRef.current || finishedRef.current) return;
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight > scrollHeight - 100) {
-      loadingRef.current = true; // fix frequent loading
-      setPage(page => page + 1);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScrollAndResize, false);
-    window.addEventListener('resize', handleScrollAndResize, false);
-    return () => {
-      window.removeEventListener('scroll', handleScrollAndResize, false);
-      window.removeEventListener('resize', handleScrollAndResize, false);
+    const fetchSaying = async () => {
+      const message = await axios.get('https://v1.hitokoto.cn/?c=a');
+      const says = `${message.data.hitokoto} ${
+        message.data.from_who === null ? '' : '    —— ' + message.data.from_who
+      } 《${message.data.from}》`;
+      setSaying(says);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchSaying();
   }, []);
+
+  // const calcMaskPos = (target: any) => {
+  //   if (!hoverRef.current) {
+  //     hoverRef.current = target;
+  //   }
+  //   const { clientHeight, offsetTop } = target;
+  //   const paddingTop =
+  //     document.documentElement.clientWidth > 1024 ? 3 * 16 : 2 * 16;
+  //   const realTop = offsetTop + paddingTop;
+  //   if (maskHeight === clientHeight && maskTop === realTop) return;
+  //   setMaskHeight(clientHeight);
+  //   setMaskTop(realTop);
+  // };
+
+  // const handleScrollAndResize = () => {
+  //   if (unactiveRef.current) return;
+  //   clearTimeout(timerRef.current);
+  //   timerRef.current = window.setTimeout(() => {
+  //     if (hoverRef.current) {
+  //       calcMaskPos(hoverRef.current);
+  //     }
+  //   }, 100);
+  //   // load more
+  //   if (loadingRef.current || finishedRef.current) return;
+  //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  //   if (scrollTop + clientHeight > scrollHeight - 100) {
+  //     loadingRef.current = true; // fix frequent loading
+  //     setPage(page => page + 1);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScrollAndResize, false);
+  //   window.addEventListener('resize', handleScrollAndResize, false);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScrollAndResize, false);
+  //     window.removeEventListener('resize', handleScrollAndResize, false);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>
