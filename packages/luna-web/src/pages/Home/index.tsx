@@ -46,50 +46,10 @@ export default function Home() {
     document.body.appendChild(script);
   }, []);
 
-  // useEffect(() => {
-  //     const fetchBooks = async () => {
-  //         const message_book = await axios.get('http://localhost:3001/books');
-  //         setBookArr(message_book.data);
-  //         const message_pic = await axios.get(`http://localhost:3001/think?number=${message_book.data.length}`);
-  //         setPicArr(message_pic.data);
-  //     }
-  //     fetchBooks();
-  // }, []);
-
-  // useEffect(() => {
-  //     const fetchThink = async () => {
-  //         const message_anime = await axios.get('http://localhost:3001/anime')
-  //         setAnimeArr(message_anime.data);
-  //         const message_pic = await axios.get(`http://localhost:3001/think?number=${message_anime.data.length}`);
-  //         setAnimePicArr(message_pic.data);
-  //     };
-  //     fetchThink();
-  // }, []);
-
-  // useEffect(() => {
-  //     const fetchDo = async () => {
-  //         const message = await axios.get('http://localhost:3001/think')
-  //         setDoArr(message.data);
-  //     };
-  //     fetchDo();
-  // }, []);
-
-  const navigate = useNavigate();
-  const loading = useLoading();
   const [page, setPage] = useState(1);
-  const [issues, setIssues] = useState<Issue[]>([]);
   const [dreamloop, setDreamloop] = useState<Issue[]>([]);
   const [magic, setMagic] = useState<Issue[]>([]);
-  const [hot, setHot] = useState<Hot>({});
-  const maskRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
-  const hoverRef = useRef<any>(null);
-  const timerRef = useRef<number>();
   const loadingRef = useRef<boolean>(false);
-  const finishedRef = useRef<boolean>(false);
-  const unactiveRef = useRef<boolean>(false);
-  const [maskHeight, setMaskHeight] = useState(0);
-  const [maskTop, setMaskTop] = useState(0);
 
   const handleQuery = (handle: string, label: string) => {
     loadingRef.current = true;
@@ -127,46 +87,6 @@ export default function Home() {
     };
     fetchSaying();
   }, []);
-
-  // const calcMaskPos = (target: any) => {
-  //   if (!hoverRef.current) {
-  //     hoverRef.current = target;
-  //   }
-  //   const { clientHeight, offsetTop } = target;
-  //   const paddingTop =
-  //     document.documentElement.clientWidth > 1024 ? 3 * 16 : 2 * 16;
-  //   const realTop = offsetTop + paddingTop;
-  //   if (maskHeight === clientHeight && maskTop === realTop) return;
-  //   setMaskHeight(clientHeight);
-  //   setMaskTop(realTop);
-  // };
-
-  // const handleScrollAndResize = () => {
-  //   if (unactiveRef.current) return;
-  //   clearTimeout(timerRef.current);
-  //   timerRef.current = window.setTimeout(() => {
-  //     if (hoverRef.current) {
-  //       calcMaskPos(hoverRef.current);
-  //     }
-  //   }, 100);
-  //   // load more
-  //   if (loadingRef.current || finishedRef.current) return;
-  //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  //   if (scrollTop + clientHeight > scrollHeight - 100) {
-  //     loadingRef.current = true; // fix frequent loading
-  //     setPage(page => page + 1);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScrollAndResize, false);
-  //   window.addEventListener('resize', handleScrollAndResize, false);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScrollAndResize, false);
-  //     window.removeEventListener('resize', handleScrollAndResize, false);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   return (
     <>
@@ -209,6 +129,7 @@ export default function Home() {
                       key={issue.id}
                       cardTitle={issue.title}
                       cardType={'diary'}
+                      cardNumber={issue.number}
                     ></Card>
                   );
                 })}
@@ -231,6 +152,7 @@ export default function Home() {
                       key={issue.id}
                       cardTitle={issue.title}
                       cardType={'diary'}
+                      cardNumber={issue.number}
                     ></Card>
                   );
                 })}

@@ -12,7 +12,7 @@ import Home from './pages/Home';
 // import Inspiration from '@/pages/Inspiration'
 // import Friend from '@/pages/Friend'
 // import About from '@/pages/About'
-// import Post from '@/pages/Post'
+import Post from './pages/Post';
 // import { getLocation } from '@/utils'
 // import { visitorStatistics } from '@utils/service'
 
@@ -25,11 +25,11 @@ const ZeroRoutes = () => {
         element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
       />
       {/* <Route path={'/project'} element={<Project />} />
-          <Route path={'/book'} element={<Book />} />
-          <Route path={'/inspiration'} element={<Inspiration />} />
-          <Route path={'/friend'} element={<Friend />} />
-          <Route path={'/about'} element={<About />} />
-          <Route path={'/post/:num'} element={<Post />} /> */}
+      <Route path={'/book'} element={<Book />} />
+      <Route path={'/inspiration'} element={<Inspiration />} />
+      <Route path={'/friend'} element={<Friend />} />
+      <Route path={'/about'} element={<About />} /> */}
+      <Route path={'/post/:num'} element={<Post />} />
     </Routes>
   );
 };

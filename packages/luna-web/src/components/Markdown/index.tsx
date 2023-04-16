@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import clsx from 'clsx';
@@ -10,9 +11,11 @@ import Image from './Image';
 import Code from './Code';
 import styles from './index.module.css';
 
+import { Issue } from '../../type';
+
 type MarkdownProps = {
   className?: string;
-  content: string;
+  content?: Issue;
 };
 
 const zooming = new Zooming({
@@ -21,29 +24,60 @@ const zooming = new Zooming({
 });
 
 const Markdown: React.FC<MarkdownProps> = ({ className, content }) => {
+  const [context, setContext] = useState('');
+  const [title, setTitle] = useState('');
+
   useLayoutEffect(() => {
     zooming.listen('.img-zoomable');
   }, []);
 
   return (
-    <div className="text-justify leading-7">
-      <ReactMarkdown
-        className={clsx(className, styles.markdown)}
-        children={content}
-        remarkPlugins={[remarkGfm]}
-        components={{
-          h1: Heading,
-          h2: Heading,
-          h3: Heading,
-          h4: Heading,
-          h5: Heading,
-          h6: Heading,
-          a: Link,
-          img: Image,
-          code: Code,
-          pre: Code,
+    <div
+      style={{
+        borderRadius: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.35)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '3rem 8rem',
+        overflow: 'hidden',
+        padding: '2rem',
+      }}
+    >
+      <div
+        className="box"
+        style={{
+          margin: '0 auto',
+          width: '100rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.4)',
+          borderRadius: 10,
+          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 12px 0px',
+          padding: 30,
         }}
-      />
+      >
+        <ReactMarkdown
+          components={{
+            h1({ ...props }) {
+              return <h2 {...props} style={{ textAlign: 'center' }}></h2>;
+            },
+          }}
+        >{`# ${content?.title}`}</ReactMarkdown>
+        <ReactMarkdown
+          remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+          children={content?.body ?? ''}
+          components={{
+            img({ alt, src, ...props }) {
+              console.log({ ...props });
+              return (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <img alt={alt} src={src} style={{ maxWidth: '100%' }} />
+                </div>
+              );
+            },
+          }}
+        />
+        {/* <CopyRight copyRouter={router}></CopyRight> */}
+      </div>
     </div>
   );
 };

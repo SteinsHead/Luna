@@ -1,9 +1,13 @@
 import styles from './index.module.css';
-
+import { useNavigate } from 'react-router-dom';
 import ayaka from '../../../assets/images/ayaka.jpg';
 
-function Card({ picture, cardTitle, cardType }: cardTypes) {
-  const handleClick = () => {};
+function Card({ picture, cardTitle, cardType, cardNumber }: cardTypes) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${cardNumber}`);
+  };
 
   return (
     <div
@@ -65,6 +69,7 @@ interface cardTypes {
   picture?: string;
   cardTitle?: string;
   cardType?: string;
+  cardNumber?: number;
 }
 
 export default Card;

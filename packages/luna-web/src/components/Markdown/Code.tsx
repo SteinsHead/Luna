@@ -28,7 +28,7 @@ import yaml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml';
 import sql from 'react-syntax-highlighter/dist/cjs/languages/prism/sql';
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import theme from '@/assets/styles/code';
+import theme from '../../assets/styles/code';
 
 const lang = {
   conf,

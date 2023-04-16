@@ -73,13 +73,13 @@ blockquote::after {
 
 blockquote::before {
   @apply top-2 left-1;
-  mask: url('@/assets/icons/quote-left.svg') no-repeat 100% 100%;
+  mask: url('../../assets/icons/quote-left.svg') no-repeat 100% 100%;
   mask-size: cover;
 }
 
 blockquote::after {
   @apply bottom-2 right-1;
-  mask: url('@/assets/icons/quote-right.svg') no-repeat 100% 100%;
+  mask: url('../../assets/icons/quote-right.svg') no-repeat 100% 100%;
   mask-size: cover;
 }
 

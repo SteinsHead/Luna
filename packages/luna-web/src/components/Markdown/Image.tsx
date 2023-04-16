@@ -6,8 +6,8 @@ import {
 } from 'react-markdown/lib/ast-to-react';
 import clsx from 'clsx';
 // import Spinner from '@/components/Spinner'
-import { fileCDN } from '@/utils';
-import { useLoading } from '@/utils/hook';
+import { fileCDN } from '../../utils';
+import { useLoading } from '../../utils/hook';
 
 type ImageProps = ComponentPropsWithoutRef<'img'> & ReactMarkdownProps;
 
