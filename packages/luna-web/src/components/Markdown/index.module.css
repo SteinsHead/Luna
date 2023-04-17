@@ -1,4 +1,4 @@
-.markdown p {
+/* .markdown p {
   @apply mb-6;
 }
 
@@ -96,4 +96,13 @@ ul {
 ol {
   @apply ml-11;
   list-style-type: decimal;
+} */
+
+.container {
+  font-family: 'NotoSerifJP';
+}
+
+.context {
+  font-family: 'MaShanZheng';
+  font-size: 1.8rem;
 }

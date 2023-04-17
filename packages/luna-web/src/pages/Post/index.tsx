@@ -5,6 +5,7 @@ import { queryIssue } from '../../utils/service';
 import { formatIssue } from '../../utils/format';
 import { useLoading } from '../../utils/hook';
 import Markdown from '../../components/Markdown';
+import { motion, AnimatePresence } from 'framer-motion';
 // import Comment from '@/components/Comment'
 // import { Calendar, Bookmark, Tag, Eye } from '@components/Icons'
 
@@ -49,26 +50,27 @@ const Post: React.FC<PostProps> = () => {
         // <Loading />
         <></>
       ) : (
-        <div className="fade">
-          <div className="mt-4 mb-8">
-            <h3 className="mb-3 text-2xl lg:text-4xl italic">{issue?.title}</h3>
-            <div className="flex justify-start mt-2 break-keep">
-              {/* <Calendar className="mr-0.5" /> */}
-              {issue?.created_at}
-              {/* <Eye className="ml-1 sm:ml-4 mr-0.5" /> */}
-              {hot || 0}℃{/* <Bookmark className="ml-1 sm:ml-4 mr-0.5" /> */}
-              {issue?.milestone ? issue?.milestone.title : '未分类'}
-              {/* <Tag className="ml-1 sm:ml-4 mr-0.5" /> */}
-              {issue?.labels.map(label => (
-                <span className="mr-1 sm:ml-2" key={label.id}>
-                  {label.name}
-                </span>
-              ))}
-            </div>
-          </div>
-          <Markdown content={issue} />
-          {/* <Comment title={issue?.title as string} /> */}
-        </div>
+        <Markdown content={issue} />
+        // <div className="fade">
+        //   <div className="mt-4 mb-8">
+        //     <h3 className="mb-3 text-2xl lg:text-4xl italic">{issue?.title}</h3>
+        //     <div className="flex justify-start mt-2 break-keep">
+        //       {/* <Calendar className="mr-0.5" /> */}
+        //       {issue?.created_at}
+        //       {/* <Eye className="ml-1 sm:ml-4 mr-0.5" /> */}
+        //       {hot || 0}℃{/* <Bookmark className="ml-1 sm:ml-4 mr-0.5" /> */}
+        //       {issue?.milestone ? issue?.milestone.title : '未分类'}
+        //       {/* <Tag className="ml-1 sm:ml-4 mr-0.5" /> */}
+        //       {issue?.labels.map(label => (
+        //         <span className="mr-1 sm:ml-2" key={label.id}>
+        //           {label.name}
+        //         </span>
+        //       ))}
+        //     </div>
+        //   </div>
+
+        //   {/* <Comment title={issue?.title as string} /> */}
+        // </div>
       )}
     </div>
   );

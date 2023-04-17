@@ -12,6 +12,16 @@ body {
     fixed;
 }
 
+@font-face {
+  font-family: 'NotoSerifJP';
+  src: url('./assets/font/NotoSerifJP-Regular.otf');
+}
+
+@font-face {
+  font-family: 'MaShanZheng';
+  src: url('./assets/font/MaShanZheng-Regular.ttf');
+}
+
 .site-layout-content {
   min-height: 1000px;
   padding: 24px;

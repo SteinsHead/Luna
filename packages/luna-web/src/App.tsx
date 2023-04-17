@@ -15,22 +15,25 @@ import Home from './pages/Home';
 import Post from './pages/Post';
 // import { getLocation } from '@/utils'
 // import { visitorStatistics } from '@utils/service'
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ZeroRoutes = () => {
   const location = useLocation();
   return (
-    <Routes location={location}>
-      <Route
-        path={'/'}
-        element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
-      />
-      {/* <Route path={'/project'} element={<Project />} />
-      <Route path={'/book'} element={<Book />} />
-      <Route path={'/inspiration'} element={<Inspiration />} />
-      <Route path={'/friend'} element={<Friend />} />
-      <Route path={'/about'} element={<About />} /> */}
-      <Route path={'/post/:num'} element={<Post />} />
-    </Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location}>
+        <Route
+          path={'/'}
+          element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
+        />
+        {/* <Route path={'/project'} element={<Project />} />
+          <Route path={'/book'} element={<Book />} />
+          <Route path={'/inspiration'} element={<Inspiration />} />
+          <Route path={'/friend'} element={<Friend />} />
+          <Route path={'/about'} element={<About />} /> */}
+        <Route path={'/post/:num'} element={<Post />} />
+      </Routes>
+    </AnimatePresence>
   );
 };
 

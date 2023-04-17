@@ -2,13 +2,16 @@ import React, { useLayoutEffect } from 'react';
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 // @ts-ignore
 import Zooming from 'zooming';
-import Heading from './Heading';
-import Link from './Link';
-import Image from './Image';
-import Code from './Code';
+// import Heading from './Heading';
+// import Link from './Link';
+// import Image from './Image';
+// import Code from './Code';
+// import styles from './index.module.css';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import styles from './index.module.css';
 
 import { Issue } from '../../type';
@@ -44,40 +47,54 @@ const Markdown: React.FC<MarkdownProps> = ({ className, content }) => {
         padding: '2rem',
       }}
     >
-      <div
-        className="box"
-        style={{
-          margin: '0 auto',
-          width: '100rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.4)',
-          borderRadius: 10,
-          boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 12px 0px',
-          padding: 30,
-        }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
       >
-        <ReactMarkdown
-          components={{
-            h1({ ...props }) {
-              return <h2 {...props} style={{ textAlign: 'center' }}></h2>;
-            },
+        <div
+          className="box"
+          style={{
+            margin: '0 auto',
+            width: '100rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            borderRadius: 10,
+            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 12px 0px',
+            padding: 30,
           }}
-        >{`# ${content?.title}`}</ReactMarkdown>
-        <ReactMarkdown
-          remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
-          children={content?.body ?? ''}
-          components={{
-            img({ alt, src, ...props }) {
-              console.log({ ...props });
-              return (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <img alt={alt} src={src} style={{ maxWidth: '100%' }} />
-                </div>
-              );
-            },
-          }}
-        />
-        {/* <CopyRight copyRouter={router}></CopyRight> */}
-      </div>
+        >
+          <ReactMarkdown
+            components={{
+              h1({ ...props }) {
+                return (
+                  <h2
+                    className={styles.container}
+                    {...props}
+                    style={{ textAlign: 'center', fontSize: '4rem' }}
+                  ></h2>
+                );
+              },
+            }}
+          >{`# ${content?.title}`}</ReactMarkdown>
+          <ReactMarkdown
+            className={styles.context}
+            remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+            children={content?.body ?? ''}
+            components={{
+              img({ alt, src, ...props }) {
+                console.log({ ...props });
+                return (
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img alt={alt} src={src} style={{ maxWidth: '100%' }} />
+                  </div>
+                );
+              },
+            }}
+          />
+          {/* <CopyRight copyRouter={router}></CopyRight> */}
+        </div>
+      </motion.div>
     </div>
   );
 };
