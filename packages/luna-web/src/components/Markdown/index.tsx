@@ -11,6 +11,8 @@ import Zooming from 'zooming';
 // import Code from './Code';
 // import styles from './index.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import styles from './index.module.css';
 
@@ -90,9 +92,31 @@ const Markdown: React.FC<MarkdownProps> = ({ className, content }) => {
                   </div>
                 );
               },
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, '')}
+                    style={dark}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+              // blockquote({...props}) {
+              //   return (
+              //     <blockquote className={styles.blockquote}>
+              //       <p {...props}></p>
+              //     </blockquote>
+              //   );
+              // }
             }}
           />
-          {/* <CopyRight copyRouter={router}></CopyRight> */}
         </div>
       </motion.div>
     </div>

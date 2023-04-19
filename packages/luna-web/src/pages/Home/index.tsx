@@ -32,11 +32,6 @@ interface SayingType {
 }
 
 export default function Home() {
-  const [picArr, setPicArr] = useState({});
-  const [thinkArr, setAnimeArr] = useState([]);
-  const [animePicArr, setAnimePicArr] = useState({});
-  const [doArr, setDoArr] = useState({});
-  const [bookArr, setBookArr] = useState([]);
   const [saying, setSaying] = useState('');
 
   useEffect(() => {
