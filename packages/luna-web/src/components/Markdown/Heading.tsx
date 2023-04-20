@@ -13,7 +13,7 @@ const Heading: HeadingComponent = ({ level, children }) => {
           className: styles.heading,
           id: title,
         } as any,
-        [<span key="anchor">H{level}</span>, children]
+        [<span key="anchor"></span>, children]
       )}
     </>
   );

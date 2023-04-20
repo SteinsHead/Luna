@@ -107,7 +107,6 @@ export default function Home() {
             }}
           >
             <div
-              className="outline"
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -130,7 +129,6 @@ export default function Home() {
                 })}
             </div>
             <div
-              className="outline"
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -153,7 +151,6 @@ export default function Home() {
                 })}
             </div>
             <div
-              className="container"
               style={{
                 display: 'flex',
                 marginTop: '4rem',

@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 // import clsx from 'clsx';
 // @ts-ignore
 import Zooming from 'zooming';
-// import Heading from './Heading';
+import Heading from './Heading';
 // import Link from './Link';
 // import Image from './Image';
 // import Code from './Code';
@@ -108,6 +108,12 @@ const Markdown: React.FC<MarkdownProps> = ({ className, content }) => {
                   </code>
                 );
               },
+              h1: Heading,
+              h2: Heading,
+              h3: Heading,
+              h4: Heading,
+              h5: Heading,
+              h6: Heading,
               // blockquote({...props}) {
               //   return (
               //     <blockquote className={styles.blockquote}>
