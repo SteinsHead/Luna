@@ -1,5 +1,6 @@
 import AvatarTip from '../../fragment/AvatarTip';
 import MenuBlock from '../../fragment/MenuBlock';
+import Switcher from '../../fragment/Switcher';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -68,30 +69,8 @@ export default function Header({ children }: Props) {
             );
           })}
         </div>
-        <div
-          className="avatar"
-          style={{
-            height: '6rem',
-            width: '6rem',
-            borderRadius: '6rem',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-          onMouseEnter={() => enterTipHandle()}
-          onMouseLeave={() => leaveTipHandle()}
-        >
-          {/* <Image src="/avatar.jpg" alt="pic of the author" layout="fill" /> */}
-        </div>
-        <div
-          className={`toolTip`}
-          style={{
-            position: 'absolute',
-            top: '10.5rem',
-            right: '3rem',
-            zIndex: '999',
-          }}
-        >
-          <AvatarTip isShown={showTip}></AvatarTip>
+        <div className="avatar">
+          <Switcher></Switcher>
         </div>
       </div>
       {children}

@@ -19,6 +19,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const ZeroRoutes = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src =
+      'https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js';
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location}>

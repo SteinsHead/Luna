@@ -1,0 +1,25 @@
+.switch {
+  width: 10rem;
+  height: 5rem;
+  background-color: rgba(229, 231, 235, 0.8);
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.switch[data-isOn='false'] {
+  justify-content: flex-end;
+  background-color: rgba(202, 135, 51, 0.8);
+}
+
+.handle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: white;
+  border-radius: 1.5rem;
+}

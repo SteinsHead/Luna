@@ -27,8 +27,10 @@ const Post: React.FC<PostProps> = () => {
     queryIssue(num)
       .then(async data => {
         await loadingRef();
+        console.log(data);
         data = formatIssue(data);
         setIssue(data);
+        console.log(data);
 
         // increaseHot(data.id, data.title).then((h) => {
         //   setHot(h)

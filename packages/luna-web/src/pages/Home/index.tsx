@@ -34,13 +34,6 @@ interface SayingType {
 export default function Home() {
   const [saying, setSaying] = useState('');
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src =
-      'https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js';
-    document.body.appendChild(script);
-  }, []);
-
   const [page, setPage] = useState(1);
   const [dreamloop, setDreamloop] = useState<Issue[]>([]);
   const [magic, setMagic] = useState<Issue[]>([]);
