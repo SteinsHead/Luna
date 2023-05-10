@@ -28,6 +28,39 @@
   color: #61dafb;
 }
 
+.app {
+  display: flex;
+}
+
+.control-tab {
+  position: fixed;
+  display: flex;
+  height: 56rem;
+  width: 56rem;
+  border-radius: 28rem;
+  align-items: center;
+  left: calc(50vw - 25rem);
+  top: calc(50vh - 25rem);
+  justify-content: center;
+  z-index: 1000;
+  background: radial-gradient(
+    circle,
+    transparent 0%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.3) 38%
+  );
+  backdrop-filter: blur(30px) saturate(180%);
+}
+
+/* .inner-tab {
+  height: 28rem;
+  width: 28rem;
+  border-radius: 14rem;
+  background-color: transparent;
+} */
+
+/* style={{ position: "fixed", backgroundColor: "green", height: "10rem", width: "10rem", }} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

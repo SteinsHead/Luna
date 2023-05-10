@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import KeepAlive from 'react-activation';
 import './App.css';
@@ -20,12 +20,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ZeroRoutes = () => {
   const location = useLocation();
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src =
-      'https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js';
-    document.body.appendChild(script);
-  }, []);
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.src =
+  //     'https://cdn.jsdelivr.net/gh/SteinsHead/live-waifu@latest/autoload.js';
+  //   document.body.appendChild(script);
+  // }, []);
 
   return (
     <AnimatePresence mode="wait">
@@ -46,18 +46,37 @@ const ZeroRoutes = () => {
 };
 
 const App = () => {
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
-    // const referrer = getLocation(document.referrer)
-    // const hostname = referrer.hostname || '直接访问'
-    // visitorStatistics(hostname)
+    const handleKeyDown = (event: any) => {
+      if (event.key === 'Control') {
+        setVisible(true);
+      }
+    };
+
+    const handleKeyUp = (event: any) => {
+      if (event.key === 'Control') {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
   }, []);
 
   return (
     <div className="app">
-      {/* <Cloud />
-      <Action />
-      <Side />
-      <Header /> */}
+      {visible && (
+        <div className="control-tab">
+          <div className="inner-tab"></div>
+        </div>
+      )}
       <ZeroRoutes />
     </div>
   );
