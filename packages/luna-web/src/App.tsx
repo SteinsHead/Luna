@@ -73,9 +73,11 @@ const App = () => {
   return (
     <div className="app">
       {visible && (
-        <div className="control-tab">
-          <div className="inner-tab"></div>
-        </div>
+        <motion.div transition={{ ease: 'easeOut', duration: 1 }}>
+          <div className="control-tab">
+            <div className="inner-tab"></div>
+          </div>
+        </motion.div>
       )}
       <ZeroRoutes />
     </div>

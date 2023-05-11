@@ -28,10 +28,6 @@
   color: #61dafb;
 }
 
-.app {
-  display: flex;
-}
-
 .control-tab {
   position: fixed;
   display: flex;
@@ -49,7 +45,7 @@
     transparent 35%,
     rgba(0, 0, 0, 0.3) 38%
   );
-  backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* .inner-tab {
