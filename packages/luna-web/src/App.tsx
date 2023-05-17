@@ -16,6 +16,8 @@ import Post from './pages/Post';
 // import { getLocation } from '@/utils'
 // import { visitorStatistics } from '@utils/service'
 import { motion, AnimatePresence } from 'framer-motion';
+import 'APlayer/dist/APlayer.min.css';
+import APlayer from 'APlayer';
 
 const ZeroRoutes = () => {
   const location = useLocation();
@@ -28,20 +30,18 @@ const ZeroRoutes = () => {
   // }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location}>
-        <Route
-          path={'/'}
-          element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
-        />
-        {/* <Route path={'/project'} element={<Project />} />
+    <Routes location={location}>
+      <Route
+        path={'/'}
+        element={<KeepAlive cacheKey="Home">{<Home />}</KeepAlive>}
+      />
+      {/* <Route path={'/project'} element={<Project />} />
           <Route path={'/book'} element={<Book />} />
           <Route path={'/inspiration'} element={<Inspiration />} />
           <Route path={'/friend'} element={<Friend />} />
           <Route path={'/about'} element={<About />} /> */}
-        <Route path={'/post/:num'} element={<Post />} />
-      </Routes>
-    </AnimatePresence>
+      <Route path={'/post/:num'} element={<Post />} />
+    </Routes>
   );
 };
 
@@ -72,13 +72,29 @@ const App = () => {
 
   return (
     <div className="app">
-      {visible && (
-        <motion.div transition={{ ease: 'easeOut', duration: 1 }}>
-          <div className="control-tab">
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            className="control-tab"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, scale: 0 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  delayChildren: 0.3,
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
             <div className="inner-tab"></div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <ZeroRoutes />
     </div>
   );

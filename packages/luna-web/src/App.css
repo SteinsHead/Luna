@@ -38,7 +38,7 @@
   left: calc(50vw - 25rem);
   top: calc(50vh - 25rem);
   justify-content: center;
-  z-index: 1000;
+  z-index: 5000;
   background: radial-gradient(
     circle,
     transparent 0%,
